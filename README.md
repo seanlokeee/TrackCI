@@ -7,6 +7,6 @@ A customer web application under src using NodeJS, Vue.js and PostgreSQL is crea
 - This leads to reduced morale with both of the teams and also impact the future revenue of the company due to customer's dissatisfaction.
 
 ### Solution To The Problem
-To resolve the problem of a single point of failure, the company should introduce the role of DevOps. DevOps is a set of practices that works to automate and integrate the processes between the development and operations teams, so they can build, test and release software faster. So, one of the sections of DevOps is **Continuous Integration** which will be applied to this scenario
+To resolve the problem of a single point of failure, the company should introduce the role of DevOps. DevOps is a set of practices that works to automate and integrate the processes between the development and operations teams, so they can build, test and release software faster. So, one of the sections of DevOps is **Continuous Integration** which is applied so that the support and development teams focus on delivering new features rather than supporting old and broken ones.
 
 #### Why Continuous Integration (CI)?

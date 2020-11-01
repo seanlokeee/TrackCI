@@ -1,1 +1,3 @@
-# ABCCIBuildTest
+### Introduction To The Problem
+A web application under src using NodeJS, Vue.js and PostgreSQL is created. But the issue with the current build and deployment is that this process is being done manually from the lead developer's laptop. This is a 
+big issue because if the lead developer is not available when an important build & deployment of the application is needed for the customer, nobody else can do the process and hence, causes the customer to wait.

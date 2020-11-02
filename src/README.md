@@ -21,7 +21,8 @@ Configuration can be found in `config/config.js`
 ```
 npm install
 npm start
-``
+```
+
 **With Migrations**
 
 ```

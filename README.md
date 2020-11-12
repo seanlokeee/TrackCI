@@ -14,7 +14,18 @@ To resolve the problem of a single point of failure, the company should introduc
 
 ## Why Continuous Integration (CI)?
 
-CI is the development practice of automating the integration of code changes from multiple developer contributions into a shared repository. Each integration is verified by an automated build and automated tests, followed by creating a package that is ready for deployment.
+CI is validating the state of the code every time a developer pushes a commit on any branch to the git server through an automatic build. Each integration is verified by an automated build and automated tests, followed by creating a package that is ready for deployment.
 - Reduced risk of bugs in production because bugs will be detected during the automated tests stage as every time a developer pushes a contribution to the shared repository, the build and test are triggered because the repository is linked to the CI pipeline.
 - Also, adding a CI pipeline with an automated build eliminates the need to rely on the lead developer's laptop for building, testing and at a later stage, deployment as all developers will have access to this shared repository linked to the CI pipeline.
 
+## Branching Strategy
+Branching is the starting point so if it is complex, by the time get to automatic deployments into production, will have multiplied that complexity many times over because every step in the process multiplies complexity.
+
+Do:
+- Simple as possible 
+- Use Pull Requests to merge
+- Integrate with CI
+
+Don't:
+- Branch per environment because not testing what is being deployed into production
+- Branch to manage configuration because hard to keep application code in the same state

@@ -1,12 +1,20 @@
 version: 2.1
+# collection of jobs which get executed as part of the workflow
 jobs:
   build:
     docker:
+      # use latest version of node in long term support
       - image: circleci/node:lts
 
     steps:
       - checkout
 
+      - run:
+          name: Set up environment
+          command: |
+            cd src
+            npm install
+#describes which jobs get executed, in which order, and in which scenarios
 workflows:
   version: 2
   build-test-package:

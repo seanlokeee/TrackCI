@@ -1,4 +1,5 @@
 version: 2.1
+
 # collection of jobs which get executed as part of the workflow
 jobs:
   build:
@@ -8,12 +9,12 @@ jobs:
 
     steps:
       - checkout
-
       - run:
           name: Set up environment
           command: |
             cd src
             npm install
+
 #describes which jobs get executed, in which order, and in which scenarios
 workflows:
   version: 2

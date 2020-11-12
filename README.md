@@ -21,11 +21,11 @@ CI is validating the state of the code every time a developer pushes a commit on
 ## Branching Strategy
 Branching is the starting point so if it is complex, by the time get to automatic deployments into production, will have multiplied that complexity many times over because every step in the process multiplies complexity.
 
-Do:
+**Do:**
 - Simple as possible 
 - Use Pull Requests to merge
 - Integrate with CI
 
-Don't:
+**Don't:**
 - Branch per environment because not testing what is being deployed into production
 - Branch to manage configuration because hard to keep application code in the same state

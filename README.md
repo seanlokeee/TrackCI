@@ -37,3 +37,6 @@ Branching is the starting point so if it is complex, by the time get to automati
 - Branch to manage configuration because hard to keep application code in the same state
 
 *Git Branch Name Format:* Starts with an alphabet (E.g. f/testing where f means that it is a feature branch) to differentiate it from other branches like hotfix
+
+## Artifact
+Contain any automated tests that will be run in different environments and be immutable because the same artifact gets deployed multiple times

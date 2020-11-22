@@ -18,6 +18,12 @@ CI is validating the state of the code every time a developer pushes a commit on
 - Reduced risk of bugs in production because bugs will be detected during the automated tests stage as every time a developer pushes a contribution to the shared repository, the build and test are triggered because the repository is linked to the CI pipeline.
 - Also, adding a CI pipeline with an automated build eliminates the need to rely on the lead developer's laptop for building, testing and at a later stage, deployment as all developers will have access to this shared repository linked to the CI pipeline.
 
+### CI Rules of Thumb
+- Run for a max time of 15 minutes
+- Fit as much validation as possible
+- Run on every commit
+- Don't generate an artifact for runs that aren't from a release branch as an artifact is a package of all the binaries and scripts required to deploy an application
+
 ## Branching Strategy
 Branching is the starting point so if it is complex, by the time get to automatic deployments into production, will have multiplied that complexity many times over because every step in the process multiplies complexity.
 
@@ -29,3 +35,5 @@ Branching is the starting point so if it is complex, by the time get to automati
 **Don't:**
 - Branch per environment because not testing what is being deployed into production
 - Branch to manage configuration because hard to keep application code in the same state
+
+*Git Branch Name Format:* Starts with an alphabet (E.g. f/testing where f means that it is a feature branch) to differentiate it from other branches like hotfix

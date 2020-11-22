@@ -38,8 +38,8 @@ Just open [http://localhost:3000](http://localhost:3000).
 
 TODO
 
-## Artefact
-Contain any automated tests that will be run in different environments and be immutable because the same artefact gets deployed multiple times
+## Artifact
+Contain any automated tests that will be run in different environments and be immutable because the same artifact gets deployed multiple times
 
 ## Writing Tests
 General Rule: Write more fast tests, and use the slower tests to only test what you can't test with the fast ones. So, in this case, 3 tests are being performed, unit being the quickest and end-2-end being the slowest where integration is in between

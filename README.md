@@ -22,7 +22,7 @@ CI is validating the state of the code every time a developer pushes a commit on
 - Run for a max time of 15 minutes
 - Fit as much validation as possible
 - Run on every commit
-- Don't generate an artefact for runs that aren't from a release branch as an artefact is a package of all the binaries and scripts required to deploy an application
+- Don't generate an artifact for runs that aren't from a release branch as an artifact is a package of all the binaries and scripts required to deploy an application
 
 ## Branching Strategy
 Branching is the starting point so if it is complex, by the time get to automatic deployments into production, will have multiplied that complexity many times over because every step in the process multiplies complexity.

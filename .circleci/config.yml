@@ -40,3 +40,9 @@ workflows:
     jobs:
       - build
       #packaging must only run on the master branch
+      - package:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

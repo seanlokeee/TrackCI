@@ -5,23 +5,31 @@ commands:
       - run:
           name: Install Dependencies
           command: |
-            cd src
             npm install
 
 # collection of jobs which get executed as part of the workflow
 jobs:
   build:
     docker:
-      # use latest version of node in long term support
+      # use latest version of node in long term support to prevent build from breaking
       - image: circleci/node:lts
+    working_directory: ~/src #source code inside src folder
     steps:
-      - checkout # get code from source repository
+      - checkout #access root folder of source repository
       - install_deps
+      - run:
+          name: Run Unit Tests
+          command: |
+            mkdir -p test-output
+            npm run test-unit
+      - store_test_results:
+          path: test-output
 
   #take output of the build, package it up and store it somewhere for future use
   package: 
     docker:
       - image: circleci/node:lts
+    working_directory: ~/src
     environment:
       NODE_ENV: production
     steps:

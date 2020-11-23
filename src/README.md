@@ -63,6 +63,9 @@ TODO: add ESLint command
 TODO: Add istanbul(nyc) commands
 
 ### Integration tests
+Test integrations between different components in the application, or integration to other services.
+
+Unlike with Unit Testing where you might pass in mocking or stubbing objects to replace external services like the database or REST APIs, with integration tests, you only change configuration, like you would do in a production environment because infrastructure or containers are deployed to run the integration tests properly.
 
 Integration tests are implemented using Mocha as well. 
 

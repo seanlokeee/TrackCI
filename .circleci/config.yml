@@ -22,10 +22,36 @@ jobs:
       - run:
           name: Run Unit Tests
           command: |
-            mkdir -p test-output
+            mkdir -p unit-test-output
             npm run test-unit
       - store_test_results:
-          path: test-output
+          path: unit-test-output
+      - store_artifacts: #store test result as an artifact
+          path: unit-test-output/unittestresult.xml
+  
+  integration:
+    docker:
+      #primary container image where all commands run
+      - image: circleci/node:lts
+      - image: postgres:10.7
+        environment:
+          POSTGRES_DB: servian
+          POSTGRES_USER: postgres 
+          POSTGRES_PASSWORD: password
+    working_directory: ~/project/src
+    steps:
+      - checkout:
+          path: ~/project
+      - install_deps
+      - run:
+          name: Run Integration Tests
+          command: |
+            mkdir -p integration-test-output
+            npm run test-integration
+      - store_test_results: 
+          path: integration-test-output 
+      - store_artifacts: #store test result as an artifact
+          path: integration-test-output/integrationtestresult.xml
 
   #take output of the build, package it up and store it somewhere for future use
   package: 
@@ -54,6 +80,9 @@ workflows:
   build-test-package:
     jobs:
       - build
+       - integration:
+           requires:
+             - build
       #packaging must only run on the master branch
       - package:
           requires:

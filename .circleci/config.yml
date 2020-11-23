@@ -82,7 +82,7 @@ workflows:
       - build-and-test
       - integration-test:
           requires:
-            - build
+            - build-and-test
       #packaging must only run on the master branch
       - package:
           requires:

@@ -86,7 +86,7 @@ workflows:
       #packaging must only run on the master branch
       - package:
           requires:
-            - build
+            - integration
           filters:
             branches:
               only: master

@@ -9,7 +9,7 @@ commands:
 
 # collection of jobs which get executed as part of the workflow
 jobs:
-  build:
+  build-and-test:
     docker:
       # use latest version of node in long term support to prevent build from breaking
       - image: circleci/node:lts
@@ -29,7 +29,7 @@ jobs:
       - store_artifacts: #store test result as an artifact
           path: unit-test-output/unittestresult.xml
   
-  integration:
+  integration-test:
     docker:
       #primary container image where all commands run
       - image: circleci/node:lts
@@ -79,14 +79,14 @@ workflows:
   version: 2
   build-test-package:
     jobs:
-      - build
-       - integration:
-           requires:
-             - build
+      - build-and-test
+      - integration-test:
+          requires:
+            - build
       #packaging must only run on the master branch
       - package:
           requires:
-            - integration
+            - integration-test
           filters:
             branches:
               only: master

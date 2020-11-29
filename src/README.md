@@ -83,7 +83,7 @@ Unlike with Unit Testing where you might pass in mocking or stubbing objects to 
 
 Integration tests are implemented using Mocha as well. To perform testing locally, `docker-compose.yml` must stand up before running the script because the postgres database must be present in order to test integration between database and application (frontend & backend). Follow the commands in **Building Docker Image** section of this README.
 
-**NOTE:** The default port of postgres is 5432 as the application didn't explicitly change the postgres local port so the docker container running, acting as a db can connect to the local port. Therefore, make sure that the port 5432 is free for use by quitting any application (E.g. postgres running in the background) occupying the port, otherwise, `servian database not exist sequelize error` will pop out.
+**NOTE:** The default port of postgres is 5432 as the application didn't explicitly change the postgres local port so the docker container running, acting as a db can connect to the local port. Therefore, make sure that the port 5432 is free for use by quitting any application (E.g. postgres running in the background) occupying the port, otherwise, `servian database not exist sequelize error` will pop out. Do this check when running the CI pipeline as all containers are running in a common network and every exposed port will be available on localhost from primary container
 
 `test-integration` script is used to run integration tests under `package.json`. To run test locally, follow the commands listed on the **Run Integration Tests**.
 

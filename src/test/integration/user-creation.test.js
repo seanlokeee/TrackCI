@@ -6,12 +6,12 @@ var expect   = require('expect.js');
 var request  = require('supertest');
 
 describe('user creation page', function () {
-  before(function () {
+  before(function (done) {
       require('../../models').sequelize.sync();
-      this.timeout(10000);
+      done();
   });
   
-  beforeEach(function () {
+  beforeEach(function (done) {
     this.models = require('../../models');
 
     Bluebird.all([
@@ -19,7 +19,7 @@ describe('user creation page', function () {
       this.models.Users.truncate({cascade: true})
     ]);
 
-    this.timeout(10000);
+    done();
   });
 
   it('loads correctly', function (done) {

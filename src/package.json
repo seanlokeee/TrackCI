@@ -8,7 +8,7 @@
     "test-lint": "",
     "test-unit": "cross-env NODE_ENV=unit nyc mocha test/unit --reporter mocha-junit-reporter --reporter-options mochaFile=./unit-test-output/unittestresult.xml",
     "test-coverage": "cross-env NODE_ENV=unit nyc report",
-    "test-integration": "cross-env DB_USERNAME=postgres DB_PASSWORD=password DB_NAME=servian DB_HOSTNAME=localhost NODE_ENV=integration mocha test/integration --reporter mocha-junit-reporter --reporter-options mochaFile=./integration-test-output/integrationtestresult.xml",
+    "test-integration": "cross-env DB_USERNAME=postgres DB_PASSWORD=password DB_NAME=servian DB_HOSTNAME=localhost NODE_ENV=integration mocha test/integration --timeout 10000 --reporter mocha-junit-reporter --reporter-options mochaFile=./integration-test-output/integrationtestresult.xml",
     "test-e2e": "cross-env NODE_ENV=e2e DB_USERNAME=postgres DB_PASSWORD=password DB_NAME=servian"
   },
   "dependencies": {

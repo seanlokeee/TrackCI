@@ -42,6 +42,14 @@ jobs:
     steps: #in a multi-image configuration job, all steps are executed in the container created by the first image listed
       - checkout:
           path: ~/project
+      - run: 
+          name: Set up environment
+          command: |
+            wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O- | sudo apt-key add -
+            echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | sudo tee /etc/apt/sources.list.d/postgresql.list
+            sudo apt update
+            sudo apt install postgresql-client-10
+            psql -h localhost -U postgres -c "CREATE DATABASE servian;"
       - install_dev_deps
       - run:
           name: Run Integration Tests

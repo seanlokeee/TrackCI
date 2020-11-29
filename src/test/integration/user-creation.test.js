@@ -7,12 +7,12 @@ var request  = require('supertest');
 
 describe('user creation page', function () {
   before(function () {
-    this.timeout(60000);
+    this.timeout(10000);
     require('../../models').sequelize.sync();
   });
   
   beforeEach(function () {
-    this.timeout(60000);
+    this.timeout(10000);
     this.models = require('../../models');
 
     Bluebird.all([
@@ -22,23 +22,26 @@ describe('user creation page', function () {
   });
 
   it('loads correctly', function (done) {
-    this.timeout(60000);
-    request(app).get('/').expect(200, done);
+    request(app).get('/').then((result) => {
+      expect(result).to.equal(200);
+    }).then(done, done);
   });
 
   it('lists a user if there is one', function (done) {
-    this.timeout(60000);
     this.models.Users.create({ username: 'johndoe' }).then(function () {
-      request(app).get('/').expect(/johndoe/, done);
+      request(app).get('/').then((result) => {
+        expect(result).to.equal(/johndoe/);
+      }).then(done, done);
     })
   });
 
   it('lists the tickets for the user if available', function (done) {
-    this.timeout(60000);
     this.models.Users.create({ username: 'johndoe' }).bind(this).then(function (user) {
       return this.models.Tasks.create({ title: 'johndoe task', UserId: user.id });
     }).then(function () {
-      request(app).get('/').expect(/johndoe task/, done);
+      request(app).get('/').then((result) => {
+        expect(result).to.equal(/johndoe task/);
+      }).then(done, done);
     });
   });
 });

@@ -5,9 +5,9 @@ var Bluebird = require('bluebird');
 var expect   = require('expect.js');
 var request  = require('supertest');
 
-describe('user creation page', function () {
+describe('user creation page', function (done) {
   before(function () {
-      return require('../../models').sequelize.sync();
+      return require('../../models').sequelize.sync().then(() => (done));
   });
   
   beforeEach(function () {
@@ -16,7 +16,7 @@ describe('user creation page', function () {
     return Bluebird.all([
       this.models.Tasks.truncate({cascade: true}),
       this.models.Users.truncate({cascade: true})
-    ]);
+    ]).then(() => (done));
   });
 
   it('loads correctly', function (done) {

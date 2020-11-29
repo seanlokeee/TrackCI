@@ -33,7 +33,7 @@ jobs:
       #primary container image where all job commands will be run on
       - image: circleci/node:lts #comes with docker-compose installed
       #service container image, running in common network where exposed ports will be available on localhost from primary container
-      - image: circleci/postgres:9.6.9-alpine #Secondary container image on common network
+      - image: postgres:9.6.9-alpine #Secondary container image on common network
         environment:
           POSTGRES_DB: servian
           POSTGRES_USER: postgres 

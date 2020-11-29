@@ -10,9 +10,9 @@ commands:
 # collection of jobs which get executed as part of the workflow
 jobs:
   build-and-test:
-    docker:
+    docker: # executor type, underlying technology to run jobs using Docker Containers
       # use latest version of node in long term support to prevent build from breaking
-      - image: circleci/node:lts
+      - image: circleci/node:lts #packaged system which has instructions for creating a running environment
     working_directory: ~/project/src #source code inside src folder
     steps:
       #access root folder of source repository
@@ -22,7 +22,6 @@ jobs:
       - run:
           name: Run Unit Tests
           command: |
-            mkdir -p unit-test-output
             npm run test-unit
       - store_test_results:
           path: unit-test-output
@@ -31,23 +30,22 @@ jobs:
   
   integration-test:
     docker:
-      #primary container image where all commands run
-      - image: circleci/node:lts
-      #service container image
-      - image: circleci/postgres:9.6.9-alpine
+      #primary container image where all job commands will be run on
+      - image: circleci/node:lts #comes with docker-compose installed
+      #service container image, running in common network where exposed ports will be available on localhost from primary container
+      - image: circleci/postgres:9.6.9-alpine #Secondary container image on common network
         environment:
           POSTGRES_DB: servian
           POSTGRES_USER: postgres 
           POSTGRES_PASSWORD: password
     working_directory: ~/project/src
-    steps:
+    steps: #in a multi-image configuration job, all steps are executed in the container created by the first image listed
       - checkout:
           path: ~/project
       - install_dev_deps
       - run:
           name: Run Integration Tests
           command: |
-            mkdir -p integration-test-output
             npm run test-integration
       - store_test_results: 
           path: integration-test-output 

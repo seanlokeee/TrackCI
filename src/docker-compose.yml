@@ -1,0 +1,13 @@
+#stand up the postgres database
+version: "3" 
+services: #containers that is being stand up
+  db: # name of the service (grouping of the specific service)
+    container_name: db
+    image: postgres:9.6.9-alpine #take image from docker hub
+    restart: on-failure
+    environment: #environment variables
+      POSTGRES_DB: servian
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports: #local port (internal) maps to container port (external), so will be able to enter from outside
+      - "5432:5432"

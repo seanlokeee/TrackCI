@@ -7,15 +7,13 @@ var request  = require('supertest');
 
 describe('user creation page', function () {
   before(function () {
-    this.timeout(10000);
-    require('../../models').sequelize.sync();
+      return require('../../models').sequelize.sync();
   });
   
   beforeEach(function () {
-    this.timeout(10000);
     this.models = require('../../models');
 
-    Bluebird.all([
+    return Bluebird.all([
       this.models.Tasks.truncate({cascade: true}),
       this.models.Users.truncate({cascade: true})
     ]);
@@ -28,8 +26,7 @@ describe('user creation page', function () {
 
   it('lists a user if there is one', function (done) {
     this.models.Users.create({ username: 'johndoe' }).then(function () {
-      request(app).get('/').expect(/johndoe/);
-      done();
+      request(app).get('/').expect(/johndoe/, done);
     })
   });
 
@@ -37,8 +34,7 @@ describe('user creation page', function () {
     this.models.Users.create({ username: 'johndoe' }).bind(this).then(function (user) {
       return this.models.Tasks.create({ title: 'johndoe task', UserId: user.id });
     }).then(function () {
-      request(app).get('/').expect(/johndoe task/);
-      done();
+      request(app).get('/').expect(/johndoe task/, done);
     });
   });
 });

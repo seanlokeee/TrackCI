@@ -41,4 +41,7 @@ Branching is the starting point so if it is complex, by the time get to automati
 *Git Branch Name Format:* Starts with an alphabet (E.g. f/testing where f means that it is a feature branch) to differentiate it from other branches like hotfix
 
 ## Artifact
-Contain any automated tests that will be run in different environments and be immutable because the same artifact gets deployed multiple times
+There are a couple of items being stored as artifacts on the CI pipeline. One of the items is the entire application itself and the rest of the items are the test, linting and coverage results as xml files
+
+- Entire application artifact must contain any automated tests that will be run in different environments and be immutable because the same artifact gets deployed multiple times
+- The items' xml files show in-depth details of the final results which can be opened on the web browser so that developers can see them easily and if there is a failure, these extra details help in further debugging

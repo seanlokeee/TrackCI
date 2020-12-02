@@ -73,11 +73,11 @@ There are [Mocha](https://mochajs.org) based unit test in the application. A gre
 TODO: add ESLint command
 
 ### Code coverage
-Describe % of the application code covered by automated test suite to make sure that our tests cover majority of the logic in the application so that haven't missed anything major. A good code coverage % should be around 80%, depending on verbosity of language. 100% leads to developers gaming the system and not writing good tests.
+Describe % of application code covered by automated test suite to make sure that our tests cover majority of the logic in the application so that haven't missed anything major. A good code coverage % should be around 80%, depending on verbosity of language. 100% leads to developers gaming the system and not writing good tests.
 
-The report is uploaded to https://codecov.io/. Codecov provides an integrated tool to group, merge, archive and compare coverage reports so that a comparison between the previous CI run and current run can be made to compare the impact of changes which are made. Codecov is chosen because it is easier to upload reports using istanbul(nyc) commands.
+The report is uploaded to https://codecov.io/ during the CircleCI build when a commit is pushed to github. Codecov provides an integrated tool to group, merge, archive and compare coverage reports so that a comparison between the previous CI run and current run can be made to compare the impact of changes which are made. Codecov is chosen because it is easier to upload reports using istanbul(nyc) commands. `codecov.yml` presents an opportunity to set multiple failure conditions (E.g. if app's code coverage does not pass over 70%, current code coverage step stops, and the build proceeds to fail). 
 
-`test-coverage` script is used to run code coverage under `package.json`. To run test locally, follow the commands listed on the **Run Code Coverage** in `config.yml`.
+`test-coverage` script is used to run code coverage under `package.json`. To run test locally, `npm run test-coverage` and check coverage folder for the results.
 
 **Script Explanation:**
 - nyc report to store the results as lcov.info and a full web report (html, css and javascript) for browser viewing

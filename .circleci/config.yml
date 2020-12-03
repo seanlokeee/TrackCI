@@ -20,6 +20,13 @@ jobs:
           path: ~/project # set checkout path to project
       - install_dev_deps
       - run:
+          name: Run Linting
+          # test-lint outputting results
+          # store-lint outputting file and storing results as xml 
+          command: |
+            npm run test-lint
+            npm run store-lint
+      - run:
           name: Run Unit Tests
           command: |
             npm run test-unit

@@ -26,14 +26,16 @@ jobs:
           command: |
             npm run test-lint
             npm run store-lint
+      - store_artifacts: #store linting result as an artifact
+          path: linting-result/eslintresult.xml
       - run:
           name: Run Unit Tests
           command: |
             npm run test-unit
       - store_test_results:
-          path: unit-test-output
+          path: unit-test-result
       - store_artifacts: #store test result as an artifact
-          path: unit-test-output/unittestresult.xml
+          path: unit-test-result/unittestresult.xml
       - run: #downloads a shell file from code coverage
           name: Get And Validate Code Coverage Report
           command: |
@@ -62,9 +64,9 @@ jobs:
           command: |
             npm run test-integration
       - store_test_results: 
-          path: integration-test-output 
+          path: integration-test-result 
       - store_artifacts: #store test result as an artifact
-          path: integration-test-output/integrationtestresult.xml
+          path: integration-test-result/integrationtestresult.xml
 
   #take output of the build, package it up and store it somewhere for future use
   package: 

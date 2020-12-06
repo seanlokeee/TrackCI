@@ -122,7 +122,7 @@ workflows:
       #packaging must only run on the master branch
       - package:
           requires:
-            - build-and-test
+            - e2e-test
           filters:
             branches:
               only: master

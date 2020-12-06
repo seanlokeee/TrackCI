@@ -68,6 +68,30 @@ jobs:
       - store_artifacts: #store test result as an artifact
           path: integration-test-result/integrationtestresult.xml
 
+  e2e-test:
+    docker:
+      - image: circleci/node:lts-browsers
+      - image: circleci/postgres:9.6.9-alpine
+        environment:
+          POSTGRES_DB: servian
+          POSTGRES_USER: postgres 
+          POSTGRES_PASSWORD: password
+    working_directory: ~/project/src
+    steps:
+      - checkout
+          path: ~/project
+      - install_dev_deps
+      - run:
+          name: Run E2E Tests
+          no_output_timeout: 2m
+          environment:
+            QAW_ARTIFACT_PATH: e2e-test-result
+          command: |
+            mkdir -p e2e-test-result
+            sh e2e.sh
+      - store_artifacts:
+          path: e2e-test-result
+
   #take output of the build, package it up and store it somewhere for future use
   package: 
     docker:
@@ -94,7 +118,7 @@ workflows:
   version: 2
   build-test-package:
     jobs:
-      - build-and-test
+      - e2e-test
       #packaging must only run on the master branch
       - package:
           requires:

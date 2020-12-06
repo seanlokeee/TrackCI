@@ -78,7 +78,7 @@ jobs:
           POSTGRES_PASSWORD: password
     working_directory: ~/project/src
     steps:
-      - checkout
+      - checkout:
           path: ~/project
       - install_dev_deps
       - run:

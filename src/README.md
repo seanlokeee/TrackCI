@@ -86,7 +86,7 @@ The report is uploaded to https://codecov.io/ during the CircleCI build when a c
 
 ### Integration Tests
 
-**NOTE:** The default port of postgres is 5432 as the application didn't explicitly change the postgres local port so the docker container running, acting as a db can connect to the local port. Therefore, make sure that the port 5432 is free for use by quitting any application (E.g. postgres running in the background) occupying the port, otherwise, `servian database not exist sequelize error` will pop out
+Default port of postgres is 5432 as application didn't explicitly change postgres local port so that docker container running, acting as a db can connect to the port. Therefore, make sure that the port 5432 is free for use by quitting any application (E.g. postgres running in the background) occupying the port, otherwise, `servian database not exist sequelize error` will pop out
 
 Integration tests are implemented using Mocha as well. To perform testing locally, `docker-compose.yml` must stand up before running the script because a postgres database must be present in order to test integration between database and application (frontend & backend). Follow the commands in **Building Docker Image** section of this README
 

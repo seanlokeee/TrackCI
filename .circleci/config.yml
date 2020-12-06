@@ -82,12 +82,16 @@ jobs:
           path: ~/project
       - install_dev_deps
       - run:
-          name: Run E2E Tests
+          name: Start Production Application
+          command: |
+            npm run start:prod & npx wait-on http://localhost:3000
+      - run:
+          name: Run e2e tests
           environment:
             QAW_ARTIFACT_PATH: e2e-test-result
           command: |
             mkdir -p e2e-test-result
-            sh e2e.sh
+            npm run test-e2e
       - store_artifacts:
           path: e2e-test-result
 

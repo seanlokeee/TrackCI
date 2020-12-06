@@ -83,7 +83,7 @@ jobs:
       - install_dev_deps
       - run:
           name: Run E2E Tests
-          no_output_timeout: 2m
+          no_output_timeout: 5m
           environment:
             QAW_ARTIFACT_PATH: e2e-test-result
           command: |
@@ -118,11 +118,11 @@ workflows:
   version: 2
   build-test-package:
     jobs:
-      - integration-test
+      - e2e-test
       #packaging must only run on the master branch
       - package:
           requires:
-            - integration-test
+            - e2e-test
           filters:
             branches:
               only: master

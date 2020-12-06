@@ -84,8 +84,7 @@ jobs:
       - run:
           name: Run E2E Tests
           command: |
-            npm run start:prod
-            npm run test-e2e
+            sh e2e.sh
       - store_test_results: 
           path: e2e-test-result
       - store_artifacts:

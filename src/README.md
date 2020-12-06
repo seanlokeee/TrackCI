@@ -59,7 +59,7 @@ docker-compose down
 
 First actual step during CI build process after all necessary prerequisites have been completed. This ensures process which run fast are ran early to see failure quickly during the build process. Then, no need to wait for 15 minutes to find out that the build failed because of a typo
 
-`test-lint` and `store-lint` script is used to run linting under `package.json`. To run linting locally, follow the commands listed on **Run Linting** in `config.yml`
+`test-lint` and `store-lint` script is used to run linting under `package.json`. To run linting locally, follow commands listed on **Run Linting** in `config.yml`
 
 **Script Explanation:**
 - eslint only allows one format to run at a time so tap is to display linting of each file to circleci for readability purposes
@@ -69,7 +69,7 @@ First actual step during CI build process after all necessary prerequisites have
 
 [Mocha](https://mochajs.org) based unit test in application 
 
-`test-unit` script is used to run unit tests under `package.json`. To run test locally, follow the commands listed on **Run Unit Tests** in `config.yml`
+`test-unit` script is used to run unit tests under `package.json`. To run test locally, follow commands listed on **Run Unit Tests** in `config.yml`
 
 **Script Explanation:**
 - nyc to show the code coverage on circleci screen for readability of unit tests as unit tests are supposed to give the coverage of the code so need to see whether unit tests cover a large enough % generally, 70%+ of the codebase
@@ -88,7 +88,7 @@ The report is uploaded to https://codecov.io/ during the CircleCI build when a c
 
 Default port of postgres is 5432 as application didn't explicitly change postgres local port so that docker container running, acting as a db can connect to the port. Therefore, make sure that the port 5432 is free for use by quitting any application (E.g. postgres running in the background) occupying the port, otherwise, `servian database not exist sequelize error` will pop out
 
-Integration tests are implemented using Mocha as well. To perform testing locally, `docker-compose.yml` must stand up before running the script because a postgres database must be present in order to test integration between database and application (frontend & backend). Follow the commands in **Building Docker Image** section of this README
+Integration tests are implemented using Mocha as well. To perform testing locally, `docker-compose.yml` must stand up before running the script because a postgres database must be present in order to test integration between database and application (frontend & backend). Follow commands in **Building Docker Image** section of this README
 
 `test-integration` script is used to run integration tests under `package.json`. To run test locally, follow the commands listed on **Run Integration Tests**
 
@@ -104,14 +104,12 @@ As said in **Integration Tests Section**, make sure local port 5432 is free for 
 
 `e2e.sh` script is used for convenience as it requires only a single command `sh e2e.sh` to run all commands in it which sets up e2e test environment and starts running e2e tests. It only requires a single terminal to be open to run the test successfully and the terminal can be re-used again locally
 
-`start:prod` starts the application in a suitable environment by passing database details as environment variables in order to access the servian database, the npx command waits for returning http code 2XX HEAD and `test-e2e` script is used to run e2e tests. To run test locally, follow the commands listed on **Run E2E Tests**
-
-To kill local host port running the application, `npx kill-port 3000`
+`start:prod` starts application in production environment where database details are required for connection purpose, npx command waits for returning http code 2XX HEAD, `test-e2e` script is used to run e2e tests and `npx kill-port 3000` kills application host port as it is still running. To run test locally, follow commands listed on **Run E2E Tests**
 
 **Script Explanation:**
--  Environment variables of the database details need to pass in order to access the servian database for both start:prod and test-e2e
-- Environment variable `QAW_HEADLESS` set to true to run the e2e in headless mode
-- Environment variable `QAW_ARTIFACT_PATH` set to e2e-test-result to produce folder named after that, containing the results of e2e test
-- The last 2 flags in test-e2e prevents terminal from hanging when the test suites have finished running so preventing timeout issues
+-  Database details need to pass in order to access the servian database for both start:prod and test-e2e
+- `QAW_HEADLESS` set to true to run the e2e in headless mode
+- `QAW_ARTIFACT_PATH` set to e2e-test-result to produce folder named after that, containing the results of e2e test
+- The last 2 flags in test-e2e prevents terminal hanging when testing is finished so preventing timeout issues
 
 

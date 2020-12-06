@@ -118,11 +118,11 @@ workflows:
   version: 2
   build-test-package:
     jobs:
-      - e2e-test
+      - integration-test
       #packaging must only run on the master branch
       - package:
           requires:
-            - e2e-test
+            - integration-test
           filters:
             branches:
               only: master

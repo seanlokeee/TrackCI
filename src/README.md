@@ -104,12 +104,14 @@ As said in **Integration Tests Section**, make sure local port 5432 is free for 
 
 `e2e.sh` script is used for convenience as it requires only a single command `sh e2e.sh` to run all commands in it which sets up e2e test environment and starts running e2e tests. It only requires a single terminal to be open to run the test successfully and the terminal can be re-used again locally
 
-`start:prod` starts the application in a suitable environment by passing database details as environment variables in order to access the servian database, the npx command waits for returning http code 2XX HEAD and `test-e2e` script is used to run e2e tests. To run test locally, run `sh e2e.sh` in the terminal
+`start:prod` starts the application in a suitable environment by passing database details as environment variables in order to access the servian database, the npx command waits for returning http code 2XX HEAD and `test-e2e` script is used to run e2e tests. To run test locally, follow the commands listed on **Run E2E Tests**
 
 To kill local host port running the application, `npx kill-port 3000`
 
 **Script Explanation:**
+-  Environment variables of the database details need to pass in order to access the servian database for both start:prod and test-e2e
 - Environment variable `QAW_HEADLESS` set to true to run the e2e in headless mode
+- Environment variable `QAW_ARTIFACT_PATH` set to e2e-test-result to produce folder named after that, containing the results of e2e test
 - The last 2 flags in test-e2e prevents terminal from hanging when the test suites have finished running so preventing timeout issues
 
 

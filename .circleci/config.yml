@@ -51,9 +51,9 @@ jobs:
       #service container image, running in common network where exposed ports will be available on localhost from primary container
       - image: circleci/postgres:9.6.9-alpine #Secondary container image on common network
         environment:
-          POSTGRES_DB: servian
           POSTGRES_USER: postgres 
           POSTGRES_PASSWORD: password
+          POSTGRES_DB: servian
     working_directory: ~/project/src
     steps: #in a multi-image configuration job, all steps are executed in the container created by the first image listed
       - checkout:
@@ -70,12 +70,18 @@ jobs:
 
   e2e-test:
     docker:
-      - image: circleci/node:lts-browsers
+      - image: qawolf/qawolf:v0.9.2
       - image: circleci/postgres:9.6.9-alpine
         environment:
-          POSTGRES_DB: servian
           POSTGRES_USER: postgres 
           POSTGRES_PASSWORD: password
+          POSTGRES_DB: servian
+    environment:
+      QAW_HEADLESS: true
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
+      DB_NAME: servian
+      DB_HOSTNAME: localhost
     working_directory: ~/project/src
     steps:
       - checkout:

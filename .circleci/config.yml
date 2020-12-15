@@ -116,17 +116,16 @@ workflows:
   build-test-package:
     jobs:
       - build-and-test
-       - integration-test:
-           requires:
-             - build-and-test
-       - e2e-test:
-           requires:
-             - build-and-test
-
+      - integration-test:
+          requires:
+            - build-and-test
+      - e2e-test:
+          requires:
+            - build-and-test
+            - integration-test
       #packaging must only run on the master branch
       - package:
           requires:
-             - integration-test
              - e2e-test
           filters:
             branches:

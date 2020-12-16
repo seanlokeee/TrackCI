@@ -19,7 +19,7 @@ Under a hidden folder (.circleci), `config.yml` file is created to perform CI
 CI is validating state of code every time a developer pushes a commit on any branch to git server. Each integration is verified by automated build, tests and packaging of application in a state ready for deployment. Packaging occurs on master branch as it will contain the completed application where all feature branches have merged to create full application
 
 - Lower risk of bugs in production because bugs will be detected during automated tests stage as every time a developer pushes a contribution to shared repository, build and test are triggered because repository is linked to CI pipeline
-- Adding a CI pipeline with these automated processes eliminates the need to rely on lead developer's laptop as all developers will have access to this shared repository, linked to the CI pipeline. This keeps production bug free because overall process breaks if any part of pipeline fails, encourages developer to fix bugs quickly to get a success status
+- Adding a CI pipeline with these automated processes eliminates the need to rely on lead developer's laptop as all developers will have access to this shared repository, linked to the CI pipeline. This keeps production bug free because overall process breaks if any part of pipeline fails, encouraging developer to fix bugs quickly to get a success status
 
 ### CircleCI
 *Setup:* Clone this project and link it to a repository which is going to be used. Then, make sure circleci and codecov is setup by following specific steps outlined in their websites. There is no need to create a new `config.yml` or any other files as all required files are present in this project

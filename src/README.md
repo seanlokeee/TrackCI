@@ -57,9 +57,9 @@ docker-compose down
 
 ### Linting
 
-First actual step during CI build process after all necessary prerequisites have been completed. This ensures process which run fast are ran early to see failure quickly during the build process. Then, no need to wait for 15 minutes to find out that the build failed because of a typo
+First actual step during CI process after all necessary prerequisites have been completed. This ensures fast processes are ran early to see failure quickly during the CI process. Then, no need to wait for 15 minutes to find out that CI process failed because of a typo
 
-`test-lint` and `store-lint` script is used to run linting under `package.json`. To run linting locally, follow commands listed on **Run Linting** in `config.yml`
+`test-lint` and `store-lint` script is used to run linting under `package.json`. To run linting locally, follow commands listed on **Run Linting** in `config.yml` and check **linting-result** folder
 
 **Script Explanation:**
 - eslint only allows one format to run at a time so tap is to display linting of each file to circleci for readability purposes
@@ -69,7 +69,7 @@ First actual step during CI build process after all necessary prerequisites have
 
 [Mocha](https://mochajs.org) based unit test in application 
 
-`test-unit` script is used to run unit tests under `package.json`. To run test locally, follow commands listed on **Run Unit Tests** in `config.yml`
+`test-unit` script is used to run unit tests under `package.json`. To run unit test locally, `npm run test-unit` and check **unit-test-result** folder
 
 **Script Explanation:**
 - nyc to show the code coverage on circleci screen for readability of unit tests as unit tests are supposed to give the coverage of the code so need to see whether unit tests cover a large enough % generally, 70%+ of the codebase
@@ -82,7 +82,7 @@ The report is uploaded to https://codecov.io/ during the CircleCI build when a c
 `test-coverage` script is used to run code coverage under `package.json`. To generate a code coverage report locally, `npm run test-coverage` and check coverage folder
 
 **Script Explanation:**
-- nyc report to store the results as lcov.info and a full web report (html, css and javascript) for browser viewing
+- nyc report to store the results as lcov.info and a full web report (html, css and javascript) in circleci as artifacts for browser viewing 
 
 ### Integration Tests
 
@@ -90,7 +90,7 @@ Default port of postgres is 5432 as application didn't explicitly change postgre
 
 Integration tests are implemented using Mocha as well. To perform testing locally, `docker-compose.yml` must stand up before running the script because a postgres database must be present in order to test integration between database and application (frontend & backend). Follow commands in **Building Docker Image** section of this README
 
-`test-integration` script is used to run integration tests under `package.json`. To run test locally, follow the commands listed on **Run Integration Tests**
+`test-integration` script is used to run integration tests under `package.json`. To run integration test locally, when port is free, docker container is up, `npm run test-integration` and check **integration-test-result** folder
 
 **Script Explanation:**
 - Environment variables of the database details need to pass in order to access the servian database
@@ -104,7 +104,7 @@ As said in **Integration Tests Section**, make sure local port 5432 is free for 
 
 `e2e.sh` script is used for convenience as it requires only a single command `sh e2e.sh` to run all commands in it which sets up e2e test environment and starts running e2e tests. It only requires a single terminal to be open to run the test successfully and the terminal can be re-used again locally
 
-`start:prod` starts application in production environment where database details are required for connection purpose, npx command waits for returning http code 2XX HEAD, `test-e2e` script is used to run e2e tests and `npx kill-port 3000` kills application host port as it is still running. To run test locally, follow commands listed on **Run E2E Tests**
+`start:prod` starts application in production environment where database details are required for connection purpose, npx command waits for returning http code 2XX HEAD, `test-e2e` script is used to run e2e tests and `npx kill-port 3000` kills application host port as it is still running. To run e2e test locally, when port is free, docker container is up, `sh e2e.sh` and check **e2e-test-result** folder
 
 **Script Explanation:**
 -  Database details need to pass in order to access the servian database for both start:prod and test-e2e

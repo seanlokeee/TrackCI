@@ -16,10 +16,10 @@ Under a hidden folder (.circleci), `config.yml` file is created to perform CI
 
 ## Why Continuous Integration (CI)?
 
-CI is validating state of code every time a developer pushes a commit on any branch to git server. Each integration is verified by automated build, tests and packaging of application in a state ready for deployment, occurs at master branch as the master will contain the completed application where all feature branches have merged to create full application
+CI is validating state of code every time a developer pushes a commit on any branch to git server. Each integration is verified by automated build, tests and packaging of application in a state ready for deployment. Packaging occurs on master branch as it will contain the completed application where all feature branches have merged to create full application
 
-- Reduced risk of bugs in production because bugs will be detected during automated tests stage as every time a developer pushes a contribution to shared repository, build and test are triggered because repository is linked to CI pipeline
-- Adding a CI pipeline with an automated build eliminates the need to rely on lead developer's laptop for building, testing and packing as all developers will have access to this shared repository linked to the CI pipeline. This keeps production bug free because overall process breaks if any one part of the pipeline fails, forcing developer to fix bugs on the spot to pass
+- Lower risk of bugs in production because bugs will be detected during automated tests stage as every time a developer pushes a contribution to shared repository, build and test are triggered because repository is linked to CI pipeline
+- Adding a CI pipeline with these automated processes eliminates the need to rely on lead developer's laptop as all developers will have access to this shared repository, linked to the CI pipeline. This keeps production bug free because overall process breaks if any part of pipeline fails, encourages developer to fix bugs quickly to get a success status
 
 ### CircleCI
 *Setup:* Clone this project and link it to a repository which is going to be used. Then, make sure circleci and codecov is setup by following specific steps outlined in their websites. There is no need to create a new `config.yml` or any other files as all required files are present in this project
@@ -56,7 +56,7 @@ Processes below which currently performed locally are integrated to CI pipeline 
 
 Write more fast tests, and use slower tests to only test what you can't test with the fast ones. So, in this case, 3 tests are being performed, unit being the quickest and end-2-end being the slowest where integration is in between
 
-Take note if all the tests succeed, the time to execute, code coverage and make sure that if tests are executed and they fail, that people are notified, and also that when something is broken, limit the impact that has on the other people you work with, meaning don't allow merging of broken code
+Take note if all the tests succeed, the time to execute, code coverage and make sure that if executed tests have failed, people are notified. When something is broken, limit the bad impact on other people you work with (E.g. don't allow merging of broken code)
 
 ## Linting
 

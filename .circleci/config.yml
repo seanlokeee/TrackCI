@@ -101,6 +101,7 @@ jobs:
           environment:
             NODE_ENV: production
           command: |
+            cd src
             npm install
       #zip up entire src file to prevent long loading-copying time as circleci
       - run: #prints to screen every time it copies a file, making process slow

@@ -1,10 +1,10 @@
 #Build pipeline as code
 version: 2.1 #top layer
 commands:
-  install_dep:
+  install_dev_deps:
     steps:
       - run:
-          name: Install Dependencies
+          name: Install Development Dependencies
           command: |
             npm install
 
@@ -19,7 +19,7 @@ jobs:
       #access root folder of source repository
       - checkout:
           path: ~/project # set checkout path to project
-      - install_dep
+      - install_dev_deps
       - run:
           name: Run Linting
           # test-lint outputting results
@@ -59,7 +59,7 @@ jobs:
     steps: #in a multi-image configuration job, all steps are executed in the container created by the first image listed
       - checkout:
           path: ~/project
-      - install_dep
+      - install_dev_deps
       - run:
           name: Run Integration Tests
           command: |
@@ -81,7 +81,7 @@ jobs:
     steps:
       - checkout:
           path: ~/project
-      - install_dep
+      - install_dev_deps
       - run:
           name: Run E2E Tests
           no_output_timeout: 4m
@@ -94,11 +94,14 @@ jobs:
   package: 
     docker:
       - image: circleci/node:lts
-    environment:
-      NODE_ENV: production
     steps:
       - checkout
-      - install_dep
+      - run:
+          name: Install Production Dependencies
+          environment:
+            NODE_ENV: production
+          command: |
+            npm install
       #zip up entire src file to prevent long loading-copying time as circleci
       - run: #prints to screen every time it copies a file, making process slow
           name: Compress Complete Application

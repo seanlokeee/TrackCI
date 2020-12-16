@@ -94,20 +94,18 @@ jobs:
   package: 
     docker:
       - image: circleci/node:lts
-    working_directory: ~/project/src
     environment:
       NODE_ENV: production
     steps:
-      - checkout:
-          path: ~/project
+      - checkout
       - install_dep
       #zip up entire src file to prevent long loading-copying time as circleci
       - run: #prints to screen every time it copies a file, making process slow
           name: Compress Complete Application
           command: |
             mkdir -p dist
-            zip -r dist/src.zip src
-      - store_artifacts: #dist = distribution folder
+            zip -r dist/src.zip src/
+      - store_artifacts: #dist = distribution folder outside of src folder
           path: dist
 
 #describes which jobs get executed, in which order, and in which scenarios

@@ -79,7 +79,7 @@ First actual step during CI process after all necessary prerequisites have been 
 
 The report is uploaded to https://codecov.io/ during the CircleCI build when a commit is pushed to github. Codecov provides an integrated tool to group, merge, archive and compare coverage reports so that a comparison between the previous CI run and current run can be made to compare the impact of changes which are made. Codecov is chosen because it is easier to upload reports using istanbul(nyc) commands. `codecov.yml` presents an opportunity to set multiple failure conditions (E.g. if app's code coverage does not pass over 70%, current code coverage step stops, and the build proceeds to fail). `CODECOV_TOKEN` is set in CI provider (CircleCI) instead of workflow file (config.yml) for privacy
 
-`test-coverage` script is used to run code coverage under `package.json`. To generate a code coverage report locally, `npm run test-coverage` and check coverage folder
+`test-coverage` script is used to run code coverage under `package.json`. To generate a code coverage report locally, `npm run test-coverage` and check **coverage** folder
 
 **Script Explanation:**
 - nyc report to store the results as lcov.info and a full web report (html, css and javascript) in circleci as artifacts for browser viewing 

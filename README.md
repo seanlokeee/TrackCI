@@ -26,6 +26,7 @@ CI is validating state of code every time a developer pushes a commit on any bra
 
 **Rules Of Thumb:** 
 - Run for a max time of 15 minutes
+![](images/timelimit.png)
 - Fit as much validation as possible
 - Run on every commit
 
@@ -47,6 +48,10 @@ Each branch has a CI pipeline so branching is the starting point so if it is com
 - Branch to manage configuration because hard to keep application code in the same state
 
 *Git Branch Name Format:* Starts with an alphabet (E.g. f/testing where f means that it is a feature branch) to differentiate it from other branches like hotfix
+
+![](images/multiplebranch.png)
+
+![](images/pullrequestcheck.png)
 
 # Processes In CircleCI Pipeline
 
@@ -80,6 +85,8 @@ Describe % of application code covered by automated test suite to make sure that
 
 ![](images/codecov.png)
 
+![](images/pullrequestcodecov.png)
+
 ## Integration Testing
 
 Test integrations between different components in the application, or integration to other services
@@ -102,13 +109,19 @@ Ensure round trip testing from the browser to the DB and back again is successfu
 Multiple items are stored as artifacts on CI pipeline. One of the items is the entire application itself, packaging `src` folder with all installed dependencies and rest of the items are test, linting and coverage results. Other artifact files show in-depth details of final results which can be opened on the web browser through circleci so that developers can see them easily and if there is a failure, these extra details help in further debugging
 
 *Packaging of whole application is generated only on master branch as feature branches don't contain all ready-to-go code, binaries and scripts. Generating package is a time consuming process so to reduce cost of overall CI process, it should only be done on release branch*
+![](images/package.png)
+![](images/packageCI.png)
 
-Running `NODE_ENV: production` for packaging complete application installs the required dependencies only
-- added 1243 packages from 892 contributors and audited 1206781 packages in 23.638s (development)
-- added 1094 packages from 591 contributors and audited 1206781 packages in 21.637s (production)
+Running `NODE_ENV: production` for packaging complete application installs the required dependencies only, hence speeding the process
+- added 1243 packages from 892 contributors and audited 1244 packages in 84.243s (development)
+![](images/installdevdep.png)
+- added 1094 packages from 591 contributors and audited 1244 packages in 77.935s (production)
+![](images/installproddep.png)
 
 ![](images/build-and-test-artifacts.png)
 
 ![](images/integration-test-artifact.png)
 
 ![](images/e2e-test-artifacts.png)
+
+![](images/package-artifact.png)

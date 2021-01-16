@@ -36,6 +36,8 @@ Just open [http://localhost:3000](http://localhost:3000)
 
 ## Building Docker Image
 
+Containerisation is a virtualisation technology meant to isolate an application and it's dependencies from other applications. This means if changes are made to one application, it doesn't impact any others. It also makes it easy to provide a run time that works for the application and promote that through testing environments, which is more difficult to do when working with servers and virtual machines. This approach also reduces the chance of configuration drift, making it much easier to keep test environment closer to production
+
 Docker-compose is a tool that comes with Docker which allows you to define an environment with one or more containers in a file for easy deployment and teardown on local machine
 
 **Usage:** Standing up testing containers that need to be interacted with (E.g. An application with a frontend, backend and database, stand up 3 containers at the same time which covers each of those components and it will connect to the local machine while staying hidden in locahost) 
